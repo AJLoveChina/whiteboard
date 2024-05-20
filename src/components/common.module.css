@@ -1,0 +1,19 @@
+.header {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background: lightblue;
+  font-size: 60px;
+  color: white;
+}
+
+.wbs {
+  margin: 20px;
+}
+
+.wb {
+}
