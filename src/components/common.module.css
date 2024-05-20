@@ -13,7 +13,14 @@
 
 .wbs {
   margin: 20px;
+  display: flex;
 }
 
 .wb {
+  margin: 10px;
+}
+
+.desc {
+  max-height: 200px;
+  overflow: auto;
 }
