@@ -1,13 +1,38 @@
-import React from "react";
+import { createHashRouter, Link, RouterProvider } from "react-router-dom";
 import "./App.css";
+import { Guide } from "./components/Guide";
 import { Header } from "./components/Header";
 import { Whiteboards } from "./components/Whiteboards";
+import style from "./components/common.module.css";
+
+const router = createHashRouter([
+  {
+    path: "/",
+    element: (
+      <div className={style.content}>
+        <Link to="/guide">How to use template?</Link>
+        <Whiteboards />
+      </div>
+    ),
+  },
+  {
+    path: "/guide",
+    element: (
+      <div className={style.content}>
+        <div>
+          <Link to="/">Home</Link>
+        </div>
+        <Guide />
+      </div>
+    ),
+  },
+]);
 
 function App() {
   return (
     <div id="body">
       <Header />
-      <Whiteboards />
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }

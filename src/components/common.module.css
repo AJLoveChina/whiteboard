@@ -11,8 +11,11 @@
   color: white;
 }
 
-.wbs {
+.content {
   margin: 20px;
+}
+
+.wbs {
   display: flex;
 }
 
@@ -23,4 +26,9 @@
 .desc {
   max-height: 200px;
   overflow: auto;
+}
+
+.guideImg {
+  max-width: 400px;
+  width: 100%;
 }
