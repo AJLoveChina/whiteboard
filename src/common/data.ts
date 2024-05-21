@@ -27,4 +27,18 @@ export const TEMPLATES_LIST = [
     title: "Software Engineer - resume",
     desc: "Resume template for software engineer/QA engineer",
   },
+  {
+    id: "5",
+    img: process.env.PUBLIC_URL + "/imgs/mind-map.png",
+    url: "https://zoom.us/wb/doc/tUadhR2KTIGseVwrRHWS8g",
+    title: "Mind Map",
+    desc: "",
+  },
+  {
+    id: "6",
+    img: process.env.PUBLIC_URL + "/imgs/project-plan.png",
+    url: "https://zoom.us/wb/doc/HxUMDiSNTR6pRw2veYSUWg",
+    title: "Project Planning",
+    desc: "",
+  },
 ];

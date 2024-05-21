@@ -32,3 +32,9 @@
   max-width: 400px;
   width: 100%;
 }
+
+.disqus {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+}

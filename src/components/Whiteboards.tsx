@@ -7,17 +7,19 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import { useCopyToClipboard } from "@uidotdev/usehooks";
 import { useParams } from "react-router-dom";
 import { TEMPLATES_LIST } from "../common/data";
 import style from "./common.module.css";
+import { toast } from "./Toast";
 
 export function Whiteboards() {
   return (
     <Grid container className={style.wbs}>
       {TEMPLATES_LIST.map((item) => {
         return (
-          <Grid item lg={2} md={3} sm={4} xs={6}>
-            <Whiteboard id={item.id} key={item.id} />
+          <Grid item lg={2} md={3} sm={4} xs={6} key={item.id}>
+            <Whiteboard id={item.id} />
           </Grid>
         );
       })}
@@ -33,6 +35,7 @@ export function SingleWhiteboard() {
 
 export function Whiteboard({ id }: { id: string }) {
   const item = TEMPLATES_LIST.find((item) => item.id === id);
+  const [, copyClipboard] = useCopyToClipboard();
   if (!item) return null;
 
   return (
@@ -53,6 +56,15 @@ export function Whiteboard({ id }: { id: string }) {
       <CardActions>
         <Button size="small" href={item.url} target="_blank">
           Open
+        </Button>
+        <Button
+          size="small"
+          onClick={() => {
+            copyClipboard(item.url);
+            toast({ data: "Copied!" });
+          }}
+        >
+          Copy
         </Button>
       </CardActions>
     </Card>
