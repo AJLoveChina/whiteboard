@@ -17,4 +17,10 @@ export const TEMPLATES_LIST = [
     title: "International Chess",
     desc: "Playing International Chess on Zoom's whiteboard feature allows players to engage in strategic battles remotely. Participants draw and move pieces with digital tools, mimicking the traditional board experience. Communication is key as players discuss moves and plan strategies via Zoom's audio or chat functions. The virtual setting adds a modern twist, enabling friends, family, or competitors from around the world to compete in real-time. While lacking the tactile sensation of physical pieces, the convenience and accessibility of online play broaden the game's reach. Despite the distance, the thrill of outsmarting opponents and achieving victory remains as captivating as ever.",
   },
+  {
+    img: process.env.PUBLIC_URL + "/imgs/Software-Engineer.jpg",
+    url: "https://zoom.us/wb/doc/9MBOhc_LSG6G9e0XGxe6Wg",
+    title: "Software Engineer - resume",
+    desc: "Resume template for software engineer/QA engineer",
+  },
 ];
