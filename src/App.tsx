@@ -20,6 +20,9 @@ const router = createHashRouter([
         <Link to="/comment">
           <Button variant="text">Comments/Leave a message</Button>
         </Link>
+        <Link to="https://github.com/AJLoveChina/birthday">
+          <Button variant="text">Github</Button>
+        </Link>
         <Whiteboards />
       </div>
     ),
