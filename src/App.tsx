@@ -2,7 +2,7 @@ import { createHashRouter, Link, RouterProvider } from "react-router-dom";
 import "./App.css";
 import { Guide } from "./components/Guide";
 import { Header } from "./components/Header";
-import { Whiteboards } from "./components/Whiteboards";
+import { SingleWhiteboard, Whiteboards } from "./components/Whiteboards";
 import style from "./components/common.module.css";
 
 const router = createHashRouter([
@@ -23,6 +23,17 @@ const router = createHashRouter([
           <Link to="/">Home</Link>
         </div>
         <Guide />
+      </div>
+    ),
+  },
+  {
+    path: "/wb/:id",
+    element: (
+      <div className={style.content}>
+        <div>
+          <Link to="/">Home</Link>
+        </div>
+        <SingleWhiteboard />
       </div>
     ),
   },
