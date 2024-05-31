@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import { TEMPLATES_LIST } from "../common/data";
 import style from "./common.module.css";
 import { toast } from "./Toast";
+import { inIframe } from "../common/function";
 
 export function Whiteboards() {
   return (
@@ -38,6 +39,7 @@ export function Whiteboard({ id }: { id: string }) {
   const [, copyClipboard] = useCopyToClipboard();
   const size = useWindowSize();
   const showDesc = size.width ? size.width >= 900 : true;
+  const disableOpenBtn = inIframe();
   if (!item) return null;
 
   return (
@@ -47,20 +49,22 @@ export function Whiteboard({ id }: { id: string }) {
         <Typography gutterBottom variant="h6" component="div">
           {item.title}
         </Typography>
-        {
-          showDesc && <Typography
-          variant="body2"
-          color="text.secondary"
-          className={style.desc}
-        >
-          {item.desc}
-        </Typography>
-        }
+        {showDesc && (
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            className={style.desc}
+          >
+            {item.desc}
+          </Typography>
+        )}
       </CardContent>
       <CardActions>
-        <Button size="small" href={item.url} target="_blank">
-          Open
-        </Button>
+        {!disableOpenBtn && (
+          <Button size="small" href={item.url} target="_blank">
+            Open
+          </Button>
+        )}
         <Button
           size="small"
           onClick={() => {
