@@ -7,7 +7,7 @@
   align-content: center;
   align-items: center;
   background: lightblue;
-  font-size: 60px;
+  font-size: 30px;
   color: white;
 }
 
@@ -20,6 +20,10 @@
 }
 
 .wb {
+  margin: 10px;
+}
+
+.wbTitle {
   margin: 10px;
 }
 

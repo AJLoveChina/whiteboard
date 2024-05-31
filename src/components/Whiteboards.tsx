@@ -7,7 +7,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { useCopyToClipboard } from "@uidotdev/usehooks";
+import { useCopyToClipboard, useWindowSize } from "@uidotdev/usehooks";
 import { useParams } from "react-router-dom";
 import { TEMPLATES_LIST } from "../common/data";
 import style from "./common.module.css";
@@ -36,22 +36,26 @@ export function SingleWhiteboard() {
 export function Whiteboard({ id }: { id: string }) {
   const item = TEMPLATES_LIST.find((item) => item.id === id);
   const [, copyClipboard] = useCopyToClipboard();
+  const size = useWindowSize();
+  const showDesc = size.width ? size.width >= 900 : true;
   if (!item) return null;
 
   return (
     <Card sx={{ maxWidth: 300 }} className={style.wb} key={item.img}>
       <CardMedia sx={{ height: 200 }} image={item.img} title={item.title} />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h6" component="div">
           {item.title}
         </Typography>
-        <Typography
+        {
+          showDesc && <Typography
           variant="body2"
           color="text.secondary"
           className={style.desc}
         >
           {item.desc}
         </Typography>
+        }
       </CardContent>
       <CardActions>
         <Button size="small" href={item.url} target="_blank">
