@@ -41,4 +41,11 @@ export const TEMPLATES_LIST = [
     title: "Project Planning",
     desc: "",
   },
+  {
+    id: "7",
+    img: process.env.PUBLIC_URL + "/imgs/vocation-svg.png",
+    url: "https://zoom.us/wb/doc/7l8dxRyVRTOWB74Fl9N8tg",
+    title: "Vocation svgs",
+    desc: "",
+  },
 ];
