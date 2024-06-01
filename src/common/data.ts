@@ -1,4 +1,11 @@
-export const TEMPLATES_LIST = [
+export interface Item {
+  id: string;
+  img: string;
+  url: string;
+  title: string;
+  desc: string;
+}
+export const TEMPLATES_LIST: Item[] = [
   {
     id: "1",
     img: process.env.PUBLIC_URL + "/imgs/world-map.png",

@@ -9,10 +9,11 @@ import {
 } from "@mui/material";
 import { useCopyToClipboard, useWindowSize } from "@uidotdev/usehooks";
 import { useParams } from "react-router-dom";
-import { TEMPLATES_LIST } from "../common/data";
+import { Item, TEMPLATES_LIST } from "../common/data";
 import style from "./common.module.css";
 import { toast } from "./Toast";
 import { inIframe } from "../common/function";
+import { useCallback } from "react";
 
 export function Whiteboards() {
   return (
@@ -40,6 +41,20 @@ export function Whiteboard({ id }: { id: string }) {
   const size = useWindowSize();
   const showDesc = size.width ? size.width >= 900 : true;
   const disableOpenBtn = inIframe();
+
+  const copyContent = useCallback((item: Item) => {
+    return fetch(process.env.PUBLIC_URL + `/clipboard/${item.id}.json`)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res.data);
+        return navigator.clipboard.write([
+          new ClipboardItem({
+            "text/plain": new Blob([""], { type: "text/plain" }),
+            "text/html": new Blob([res.data], { type: "text/html" }),
+          }),
+        ]);
+      });
+  }, []);
   if (!item) return null;
 
   return (
@@ -69,10 +84,33 @@ export function Whiteboard({ id }: { id: string }) {
           size="small"
           onClick={() => {
             copyClipboard(item.url);
-            toast({ data: "Copied!" });
+            toast({
+              data: "Whiteboard URL Copied!",
+            });
           }}
+          title="Copy whiteboard url"
         >
           Copy
+        </Button>
+
+        <Button
+          size="small"
+          onClick={async () => {
+            copyContent(item)
+              .then(() => {
+                toast({
+                  data: "Copied!  You can paste data to your own whiteboard directly",
+                });
+              })
+              .catch(() => {
+                toast({
+                  data: "Failed!",
+                });
+              });
+          }}
+          title="Copy template content and paste it into your own whiteboard"
+        >
+          Copy Content
         </Button>
       </CardActions>
     </Card>
