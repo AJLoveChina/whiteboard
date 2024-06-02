@@ -5,6 +5,7 @@ import {
   CardContent,
   CardMedia,
   Grid,
+  Link,
   Typography,
 } from "@mui/material";
 import { useCopyToClipboard, useWindowSize } from "@uidotdev/usehooks";
@@ -13,7 +14,8 @@ import { Item, TEMPLATES_LIST } from "../common/data";
 import style from "./common.module.css";
 import { toast } from "./Toast";
 import { inIframe } from "../common/function";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 export function Whiteboards() {
   return (
@@ -41,20 +43,39 @@ export function Whiteboard({ id }: { id: string }) {
   const size = useWindowSize();
   const showDesc = size.width ? size.width >= 900 : true;
   const disableOpenBtn = inIframe();
+  const [data, setData] = useState<string>();
 
-  const copyContent = useCallback((item: Item) => {
-    return fetch(process.env.PUBLIC_URL + `/clipboard/${item.id}.json`)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res.data);
-        return navigator.clipboard.write([
-          new ClipboardItem({
-            "text/plain": new Blob([""], { type: "text/plain" }),
-            "text/html": new Blob([res.data], { type: "text/html" }),
-          }),
-        ]);
-      });
-  }, []);
+  const copyContent = useCallback(
+    (item: Item) => {
+      if (data) {
+        try {
+          navigator.clipboard.write([
+            new ClipboardItem({
+              "text/plain": new Blob([""], { type: "text/plain" }),
+              "text/html": new Blob([data], { type: "text/html" }),
+            }),
+          ]);
+        } catch (ex) {
+          return Promise.reject(ex);
+        }
+        return Promise.resolve(true);
+      } else {
+        return fetch(process.env.PUBLIC_URL + `/clipboard/${item.id}.json`)
+          .then((res) => res.json())
+          .then((res) => {
+            console.log(res.data);
+            setData(res.data);
+            return navigator.clipboard.write([
+              new ClipboardItem({
+                "text/plain": new Blob([""], { type: "text/plain" }),
+                "text/html": new Blob([res.data], { type: "text/html" }),
+              }),
+            ]);
+          });
+      }
+    },
+    [data]
+  );
   if (!item) return null;
 
   return (
@@ -62,7 +83,12 @@ export function Whiteboard({ id }: { id: string }) {
       <CardMedia sx={{ height: 200 }} image={item.img} title={item.title} />
       <CardContent>
         <Typography gutterBottom variant="h6" component="div">
-          {item.title}
+          {disableOpenBtn && item.title}
+          {!disableOpenBtn && (
+            <Link href={item.url} target="_blank" title="Open whiteboard">
+              {item.title}
+            </Link>
+          )}
         </Typography>
         {showDesc && (
           <Typography
@@ -74,12 +100,7 @@ export function Whiteboard({ id }: { id: string }) {
           </Typography>
         )}
       </CardContent>
-      <CardActions>
-        {!disableOpenBtn && (
-          <Button size="small" href={item.url} target="_blank">
-            Open
-          </Button>
-        )}
+      <CardActions className={style.btnsGroup}>
         <Button
           size="small"
           onClick={() => {
@@ -90,7 +111,7 @@ export function Whiteboard({ id }: { id: string }) {
           }}
           title="Copy whiteboard url"
         >
-          Copy
+          Copy Url
         </Button>
 
         <Button
@@ -104,7 +125,7 @@ export function Whiteboard({ id }: { id: string }) {
               })
               .catch(() => {
                 toast({
-                  data: "Failed!",
+                  data: "Failed! (Safari required click twice!)",
                 });
               });
           }}

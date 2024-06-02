@@ -20,6 +20,7 @@ export function Toast() {
   }, []);
   return (
     <Snackbar
+      key={message}
       open={!!message}
       autoHideDuration={6000}
       onClose={() => {

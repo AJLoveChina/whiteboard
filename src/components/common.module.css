@@ -32,6 +32,10 @@
   overflow: auto;
 }
 
+.btnsGroup {
+  flex-wrap: wrap;
+}
+
 .guideImg {
   max-width: 400px;
   width: 100%;
