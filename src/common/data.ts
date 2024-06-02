@@ -55,4 +55,11 @@ export const TEMPLATES_LIST: Item[] = [
     title: "Vocation svgs",
     desc: "",
   },
+  {
+    id: "8",
+    img: process.env.PUBLIC_URL + "/imgs/cute-emojis.png",
+    url: "https://zoom.us/wb/doc/PsvPh1RaRRywRiqA-mDo3g/p/229523030605824",
+    title: "Cute emojis",
+    desc: "",
+  },
 ];
