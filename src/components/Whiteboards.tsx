@@ -15,7 +15,6 @@ import style from "./common.module.css";
 import { toast } from "./Toast";
 import { inIframe } from "../common/function";
 import { useCallback, useState } from "react";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 export function Whiteboards() {
   return (
@@ -80,7 +79,9 @@ export function Whiteboard({ id }: { id: string }) {
 
   return (
     <Card sx={{ maxWidth: 300 }} className={style.wb} key={item.img}>
-      <CardMedia sx={{ height: 200 }} image={item.img} title={item.title} />
+      <div className={style.imgContainer}>
+        <img src={item.img} title={item.title} />
+      </div>
       <CardContent>
         <Typography gutterBottom variant="h6" component="div">
           {disableOpenBtn && item.title}

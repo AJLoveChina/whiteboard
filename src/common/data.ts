@@ -62,4 +62,11 @@ export const TEMPLATES_LIST: Item[] = [
     title: "Cute emojis",
     desc: "",
   },
+  {
+    id: "9",
+    img: process.env.PUBLIC_URL + "/imgs/flowchart.png",
+    url: "https://zoom.us/wb/doc/3HgR9OzZSN60F7O_xmmbNQ/p/130326817144832",
+    title: "Flowchart",
+    desc: "",
+  },
 ];
