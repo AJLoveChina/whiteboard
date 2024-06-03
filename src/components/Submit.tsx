@@ -8,6 +8,7 @@ import { toast } from "./Toast";
 export function Submit() {
   const [, copy] = useCopyToClipboard();
   const [email, setEmail] = useState<string>();
+
   const copyEmail = useCallback(() => {
     const email = atob("YWpsb3Zld29ybGRAZ21haWwuY29t");
     copy(email);
@@ -37,8 +38,13 @@ export function Submit() {
           <span>{email}</span>
           <br />
           <img
+            onClick={(ev) => {
+              if (ev.target && ev.target instanceof HTMLElement) {
+                ev.target.style.width = "100%";
+              }
+            }}
             style={{ width: "300px" }}
-            src={process.env.PUBLIC_URL + "/imgs/invite-by-email.png"}
+            src={process.env.PUBLIC_URL + "/imgs/invite-viewer-by-email.png"}
             alt=""
           />
         </li>
