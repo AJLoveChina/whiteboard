@@ -8,6 +8,8 @@ import { Guide } from "./components/Guide";
 import { Header } from "./components/Header";
 import { Toast } from "./components/Toast";
 import { SingleWhiteboard, Whiteboards } from "./components/Whiteboards";
+import { Submit } from "./components/Submit";
+import { GITHUB_LINK } from "./common/data";
 
 const router = createHashRouter([
   {
@@ -20,7 +22,10 @@ const router = createHashRouter([
         <Link to="/comment">
           <Button variant="text">Comments/Leave a message</Button>
         </Link>
-        <Link to="https://github.com/AJLoveChina/whiteboard">
+        <Link to="/submit">
+          <Button variant="text">Submit your template</Button>
+        </Link>
+        <Link to={GITHUB_LINK}>
           <Button variant="text">Github</Button>
         </Link>
         <Whiteboards />
@@ -37,6 +42,19 @@ const router = createHashRouter([
           </Link>
         </div>
         <Guide />
+      </div>
+    ),
+  },
+  {
+    path: "/submit",
+    element: (
+      <div className={style.content}>
+        <div>
+          <Link to="/">
+            <Button variant="text">Home</Button>
+          </Link>
+        </div>
+        <Submit />
       </div>
     ),
   },

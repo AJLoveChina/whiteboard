@@ -70,3 +70,5 @@ export const TEMPLATES_LIST: Item[] = [
     desc: "",
   },
 ];
+
+export const GITHUB_LINK = "https://github.com/AJLoveChina/whiteboard";

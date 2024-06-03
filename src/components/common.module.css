@@ -60,3 +60,18 @@
   max-width: 800px;
   margin: 20px auto;
 }
+
+.thanksContainer {
+  display: flex;
+  height: 200px;
+  align-content: center;
+  align-items: center;
+}
+
+.thanksContainer img {
+  height: 100%;
+}
+
+.thanksTitle {
+  font-size: 30px;
+}
