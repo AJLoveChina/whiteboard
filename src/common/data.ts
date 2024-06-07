@@ -76,6 +76,13 @@ export const TEMPLATES_LIST: Item[] = [
     title: "Sequence diagram",
     desc: "",
   },
+  {
+    id: "11",
+    img: process.env.PUBLIC_URL + "/imgs/Decision-tree.png",
+    url: "https://zoom.us/wb/doc/9ejP5SfWQDSKtcT0liF_WA",
+    title: "Decision tree",
+    desc: "",
+  },
 ];
 
 export const GITHUB_LINK = "https://github.com/AJLoveChina/whiteboard";
