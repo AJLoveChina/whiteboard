@@ -33,7 +33,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "tools": "ts-node ./tools/index.ts"
+    "generate-clipboard-data": "ts-node ./tools/index.ts"
   },
   "eslintConfig": {
     "extends": [

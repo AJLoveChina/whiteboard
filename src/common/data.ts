@@ -69,6 +69,13 @@ export const TEMPLATES_LIST: Item[] = [
     title: "Flowchart",
     desc: "",
   },
+  {
+    id: "10",
+    img: process.env.PUBLIC_URL + "/imgs/Sequence-diagram.png",
+    url: "https://zoom.us/wb/doc/FTdvV7UnQ7mXDqUIWxrSWw/p/241206318202880",
+    title: "Sequence diagram",
+    desc: "",
+  },
 ];
 
 export const GITHUB_LINK = "https://github.com/AJLoveChina/whiteboard";
