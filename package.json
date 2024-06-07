@@ -31,9 +31,9 @@
   "scripts": {
     "i": "npm --proxy \"http://registry.npmjs.org/\" install",
     "start": "react-scripts start",
+    "generate-clipboard-data": "ts-node ./tools/index.ts",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "generate-clipboard-data": "ts-node ./tools/index.ts"
+    "all": "npm run generate-clipboard-data && npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +54,10 @@
     ]
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.4"
+    "@types/fs-extra": "^11.0.4",
+    "@types/image-size": "^0.8.0",
+    "@types/sharp": "^0.32.0",
+    "image-size": "^1.1.1",
+    "sharp": "^0.33.4"
   }
 }

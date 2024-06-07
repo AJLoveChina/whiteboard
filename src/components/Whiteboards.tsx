@@ -4,6 +4,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  CircularProgress,
   Grid,
   Link,
   Typography,
@@ -14,7 +15,7 @@ import { Item, TEMPLATES_LIST } from "../common/data";
 import style from "./common.module.css";
 import { toast } from "./Toast";
 import { inIframe } from "../common/function";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export function Whiteboards() {
   return (
@@ -43,6 +44,18 @@ export function Whiteboard({ id }: { id: string }) {
   const showDesc = size.width ? size.width >= 900 : true;
   const disableOpenBtn = inIframe();
   const [data, setData] = useState<string>();
+  const [img, setImg] = useState(item?.img);
+
+  useEffect(() => {
+    if (!item || img) return;
+    fetch(process.env.PUBLIC_URL + `/preview/${item.id}.json`)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.small) {
+          setImg(process.env.PUBLIC_URL + `/preview/${json.small}`);
+        }
+      });
+  }, [item, img]);
 
   const copyContent = useCallback(
     (item: Item) => {
@@ -78,9 +91,10 @@ export function Whiteboard({ id }: { id: string }) {
   if (!item) return null;
 
   return (
-    <Card sx={{ maxWidth: 300 }} className={style.wb} key={item.img}>
+    <Card sx={{ maxWidth: 300 }} className={style.wb} key={item.id}>
       <div className={style.imgContainer}>
-        <img src={item.img} title={item.title} />
+        {img && <img src={img} title={item.title} alt="" />}
+        {!img && <CircularProgress />}
       </div>
       <CardContent>
         <Typography gutterBottom variant="h6" component="div">

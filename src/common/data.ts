@@ -1,9 +1,9 @@
 export interface Item {
   id: string;
-  img: string;
   url: string;
   title: string;
-  desc: string;
+  img?: string;
+  desc?: string;
 }
 export const TEMPLATES_LIST: Item[] = [
   {
